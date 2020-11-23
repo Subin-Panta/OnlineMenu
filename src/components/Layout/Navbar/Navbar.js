@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import classes from './Navbar.module.css'
 const Navbar = () => {
 	const logo = (
@@ -21,8 +22,35 @@ const Navbar = () => {
 		<nav className={classes.navbar}>
 			<div className={classes.logo}>{logo}</div>
 			<ul>
-				<li>Home</li>
-				<li>Customer Support</li>
+				<li>
+					<NavLink
+						to='/'
+						exact
+						isActive={(match, location) => {
+							console.log(location)
+							if (
+								location.pathname === '/checkout' ||
+								location.pathname === '/'
+							) {
+								return true
+							}
+						}}
+						className={classes.nav}
+						activeClassName={classes.acnav}
+					>
+						Home
+					</NavLink>
+				</li>
+				<li>
+					<NavLink
+						exact
+						to='/customerSupport'
+						className={classes.nav}
+						activeClassName={classes.acnav}
+					>
+						Customer Support
+					</NavLink>
+				</li>
 			</ul>
 		</nav>
 	)

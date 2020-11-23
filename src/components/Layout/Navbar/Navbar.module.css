@@ -20,18 +20,25 @@
 	list-style: none;
 	margin: auto;
 }
-.navbar li {
+.navbar li,
+.nav {
+	text-decoration: none;
 	margin: 0 3rem 0 0;
-	color: rgba(12, 13, 12, 0.66);
+	color: rgba(24, 24, 24, 0.589);
 	font-family: Roboto;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 30px;
 }
-.navbar li:hover {
+.navbar li:hover,
+.nav:hover {
 	color: rgb(5, 0, 14);
 	cursor: pointer;
 }
 .logo :hover {
 	cursor: pointer;
+}
+
+.acnav {
+	color: rgb(5, 0, 14);
 }

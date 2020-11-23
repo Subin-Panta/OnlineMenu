@@ -1,0 +1,21 @@
+table {
+	width: 100%;
+	border-spacing: 1rem;
+	height: 100%;
+	border-spacing: 2.5rem;
+}
+thead {
+	margin-top: 0;
+}
+th {
+	padding: 5px;
+	text-align: center;
+	/* top: 0; */
+	/* word-spacing: 10px; */
+}
+tr {
+	padding: 10px;
+}
+td {
+	text-align: center;
+}

@@ -1,0 +1,26 @@
+.order {
+	color: white;
+	font-size: 20px;
+	padding: 7px;
+	width: 100px;
+	background-color: rgb(8, 139, 52);
+}
+.clear {
+	color: white;
+	font-size: 20px;
+	padding: 7px;
+	width: 100px;
+	background-color: rgb(247, 53, 27);
+}
+.order:hover,
+.clear:hover {
+	width: 105px;
+	padding: 8px;
+	font-size: 23px;
+}
+/* .clear {
+	color: white;
+	font-size: 20px;
+	padding: 7px;
+	width: 100px;
+} */

@@ -8,7 +8,7 @@ const setMenu = (state, action) => {
 		...state,
 		error: false,
 		loading: false,
-		items: { ...action.menuItems }
+		items: [...action.menuItems]
 	}
 }
 const fetchFail = state => {

@@ -31,3 +31,18 @@
 	margin: 50px;
 	display: flex;
 }
+.receiptButton {
+	margin-left: 50%;
+}
+.linkStyle {
+	text-decoration: none;
+	background-color: rgb(197, 31, 31);
+	padding: 7px;
+	border-radius: 5px;
+	color: white;
+	transition: all 200ms linear;
+}
+.linkStyle:hover {
+	padding: 10px;
+	background-color: rgb(31, 197, 45);
+}
