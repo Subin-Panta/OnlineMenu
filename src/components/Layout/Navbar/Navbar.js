@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import classes from './Navbar.module.css'
 const Navbar = () => {
 	const logo = (
@@ -52,6 +52,11 @@ const Navbar = () => {
 					</NavLink>
 				</li>
 			</ul>
+			<div className={classes.login}>
+				<Link className={classes.link} to='/adminLogin'>
+					Admin
+				</Link>
+			</div>
 		</nav>
 	)
 }

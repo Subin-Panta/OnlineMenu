@@ -42,3 +42,23 @@
 .acnav {
 	color: rgb(5, 0, 14);
 }
+.login,
+.link {
+	text-decoration: none;
+	font-size: 20px;
+	opacity: 0;
+	/* test */
+	padding: 5px;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-right: 1rem;
+}
+.login:hover,
+.link:hover {
+	font-size: 20px;
+	opacity: 1;
+	cursor: pointer;
+	display: block;
+	display: inline;
+	color: rgb(26, 16, 16);
+}
