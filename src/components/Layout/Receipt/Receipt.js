@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import classes from './Receipt.module.css'
 import { connect } from 'react-redux'
 // const lister = object => {

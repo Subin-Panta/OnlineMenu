@@ -22,3 +22,7 @@ button:disabled {
 	color: black;
 	background-color: #3ff37e;
 }
+.linkStyle {
+	color: rgb(5, 31, 126);
+	text-decoration: none;
+}

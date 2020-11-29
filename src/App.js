@@ -6,6 +6,7 @@ import CustomerSupport from './components/CustomerSupport/CustomerSupport'
 import PageNotFound from './components/PageNotFound/PageNotFound'
 import Checkout from './components/Checkout/Checkout'
 import Login from './components/AdminPage/Login'
+import SingleItem from './components/SingleItem/SingleItem'
 const App = () => {
 	return (
 		<div>
@@ -15,6 +16,7 @@ const App = () => {
 				<Route exact path='/customerSupport' component={CustomerSupport} />
 				<Route exact path='/checkout' component={Checkout} />
 				<Route exact path='/adminLogin' component={Login} />
+				<Route exact path='/menuItems/:name' component={SingleItem} />
 				<Route component={PageNotFound} />
 			</Switch>
 		</div>

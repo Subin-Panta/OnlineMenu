@@ -1,4 +1,5 @@
 import * as actionTypes from './types'
+import axios from 'axios'
 export const setMenu = menuItems => {
 	return {
 		type: actionTypes.SET_MENU,
@@ -10,7 +11,9 @@ export const fetchFail = () => {
 }
 export const initMenu = () => {
 	//pachi backend ma c\connect garda async huncha ani catch block ma we dispatch fetchfail
-	return dispatch => {
+	return async dispatch => {
+		const data = await axios.get('/menu/')
+		console.log(data)
 		const dummydata = [
 			{
 				name: 'MOMO',
@@ -37,6 +40,6 @@ export const initMenu = () => {
 				price: '100'
 			}
 		]
-		dispatch(setMenu(dummydata))
+		dispatch(setMenu(data.data.items))
 	}
 }

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { initMenu, addItem, removeItem } from '../../../store/actions/index'
+import { Link } from 'react-router-dom'
 import Spinner from '../../UI/spinner/Spinner'
 import classes from './Menu.module.css'
 const Menu = ({ menu, initMenu, order, addItem, removeItem }) => {
@@ -68,7 +69,14 @@ const Menu = ({ menu, initMenu, order, addItem, removeItem }) => {
 					) : (
 						menu.items.map((item, index) => (
 							<tr key={index}>
-								<td>{item.name}</td>
+								<td>
+									<Link
+										className={classes.linkStyle}
+										to={'menuItems/' + item.name}
+									>
+										{item.name}
+									</Link>
+								</td>
 								<td>Rs {item.price}</td>
 								<td>
 									<button
