@@ -14,32 +14,7 @@ export const initMenu = () => {
 	return async dispatch => {
 		const data = await axios.get('/menu/')
 		console.log(data)
-		const dummydata = [
-			{
-				name: 'MOMO',
-				price: '100'
-			},
-			{
-				name: 'Burger',
-				price: '150'
-			},
-			{
-				name: 'Pizza',
-				price: '250'
-			},
-			{
-				name: 'Chowmein',
-				price: '100'
-			},
-			{
-				name: 'Fried Rice',
-				price: '50'
-			},
-			{
-				name: 'Naan',
-				price: '100'
-			}
-		]
+
 		dispatch(setMenu(data.data.items))
 	}
 }

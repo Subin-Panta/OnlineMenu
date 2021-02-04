@@ -1,0 +1,33 @@
+.container {
+	width: 80%;
+	height: 100%;
+	margin: auto;
+}
+.container h1 {
+	text-align: center;
+}
+.container span {
+	display: flex;
+	margin-top: 20px;
+}
+.details {
+	width: 100%;
+}
+.button {
+	width: 100%;
+	justify-content: center;
+	text-align: center;
+	margin-top: 2rem;
+}
+.price {
+	text-decoration: none;
+	border-radius: 5px;
+	padding: 7px;
+	width: 6rem;
+	background-color: rgb(77, 243, 146);
+	transition: all 200ms linear;
+}
+.price:hover {
+	border-radius: 6px;
+	background-color: rgb(243, 77, 77);
+}

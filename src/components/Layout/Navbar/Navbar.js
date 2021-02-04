@@ -27,7 +27,6 @@ const Navbar = () => {
 						to='/'
 						exact
 						isActive={(match, location) => {
-							console.log(location)
 							if (
 								location.pathname === '/checkout' ||
 								location.pathname === '/'
