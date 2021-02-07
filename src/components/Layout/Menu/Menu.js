@@ -4,8 +4,11 @@ import { initMenu, addItem, removeItem } from '../../../store/actions/index'
 import { Link } from 'react-router-dom'
 import Spinner from '../../UI/spinner/Spinner'
 import classes from './Menu.module.css'
+import axios from 'axios'
+import withErrorHandler from '../../hoc/withErrorHandler/WithErrorHandler'
 const Menu = ({ menu, initMenu, order, addItem, removeItem }) => {
 	useEffect(() => {
+		console.log('axios request sending and reciening')
 		initMenu()
 	}, [initMenu])
 
@@ -109,4 +112,7 @@ const mapStateToProps = state => ({
 	order: state.orderBuilder
 })
 const mapDispatchToProps = { initMenu, addItem, removeItem }
-export default connect(mapStateToProps, mapDispatchToProps)(Menu)
+export default withErrorHandler(
+	connect(mapStateToProps, mapDispatchToProps)(Menu),
+	axios
+)

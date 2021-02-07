@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import { connect } from 'react-redux'
 import classes from './Login.module.css'
-import WithErrorHandler from '../hoc/withErrorHandler/WithErrorHandler'
-const Login = () => {
+import { verifyUser } from '../../store/actions/auth'
+const Login = ({ verifyUser }) => {
 	const [formData, setFormData] = useState({
 		email: '',
 		password: ''
@@ -10,15 +10,10 @@ const Login = () => {
 	const submitHandler = async e => {
 		e.preventDefault()
 		const lowercased = formData.email.toLowerCase()
-		const formD = {
-			email: lowercased,
-			password: formData.password
-		}
-		try {
-			const res = await axios.post('/auth/postLogin', formD)
-		} catch (error) {}
-
-		//send it to back end to verify
+		const email = lowercased
+		const password = formData.password
+		verifyUser(email, password)
+		//send it to back end to verify with redux and store user data on redux state
 	}
 	const changeHandler = e => {
 		setFormData({
@@ -54,4 +49,4 @@ const Login = () => {
 	)
 }
 
-export default WithErrorHandler(Login, axios)
+export default connect(null, { verifyUser })(Login)

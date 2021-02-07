@@ -10,11 +10,13 @@ export const fetchFail = () => {
 	return { type: actionTypes.FETCH_FAILED }
 }
 export const initMenu = () => {
-	//pachi backend ma c\connect garda async huncha ani catch block ma we dispatch fetchfail
 	return async dispatch => {
-		const data = await axios.get('/menu/')
-		console.log(data)
-
-		dispatch(setMenu(data.data.items))
+		try {
+			//forced error
+			const data = await axios.get('/menu/')
+			dispatch(setMenu(data.data.items))
+		} catch (error) {
+			dispatch(fetchFail())
+		}
 	}
 }

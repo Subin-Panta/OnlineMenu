@@ -1,50 +1,58 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from '../../UI/Modal/Modal'
-const Callingfunction = axios => {
-	const [error, setError] = useState(null)
-	const [modal, openModal] = useState(false)
-	useEffect(() => {
-		const req = axios.interceptors.request.use(null, error => {
-			setError(null)
-		})
-		const res = axios.interceptors.response.use(null, error => {
-			setError(error)
-		})
-		return () => {
-			axios.interceptors.request.eject(req)
-			axios.interceptors.response.eject(res)
-		}
-	}, [axios.interceptors.request, axios.interceptors.response])
-
-	if (error) {
-		return <Modal clickHandler={() => setError(null)}>{error.message}</Modal>
-	}
-}
 const WithErrorHandler = (WrappedComponent, axios) => {
-	return props => {
+	const NewComponent = props => {
+		console.log('UseState')
+		const [ready, setReady] = useState(false)
+		const [error, setError] = useState(null)
+		console.log('runs')
+		useEffect(() => {
+			const req = axios.interceptors.request.use(config => {
+				console.log('request intercepted')
+				return config
+			})
+			const res = axios.interceptors.response.use(null, error => {
+				setError(error)
+				return Promise.reject(error)
+			})
+			setReady(true)
+			return () => {
+				axios.interceptors.request.eject(req)
+				axios.interceptors.response.eject(res)
+			}
+		}, [])
+		if (!ready) return null
 		return (
-			<Fragment>
-				{Callingfunction(axios)}
+			<div>
+				{console.log('render')}
+				{error ? (
+					<Modal clickHandler={() => setError(null)}> {error.message}</Modal>
+				) : null}
 				<WrappedComponent {...props} />
-			</Fragment>
+			</div>
 		)
 	}
+	return NewComponent
 }
 export default WithErrorHandler
 
 // import React, { Component } from 'react'
 // import Modal from '../../UI/Modal/Modal'
-// const withErrorHandler = (WrappedComponent, axios) => {
+// const WithErrorHandler = (WrappedComponent, axios) => {
 // 	return class extends Component {
 // 		state = {
 // 			error: null
 // 		}
+
 // 		componentDidMount() {
+// 			console.log('component did Moint')
 // 			this.reqinter = axios.interceptors.request.use(req => {
+// 				console.log('clearing error', this.state.error)
 // 				this.setState({ error: null })
 // 			})
 // 			this.resinter = axios.interceptors.response.use(null, error => {
 // 				this.setState({ error: error })
+// 				console.log('called as error is present', this.state.error)
 // 			})
 // 		}
 // 		componentWillUnmount() {
@@ -54,8 +62,11 @@ export default WithErrorHandler
 // 		render() {
 // 			return (
 // 				<div>
+// 					{console.log('called First')}
 // 					{this.state.error ? (
-// 						<Modal>console.log(this.state.error)</Modal>
+// 						<Modal clickHandler={() => this.setState({ error: null })}>
+// 							{this.state.error.message}
+// 						</Modal>
 // 					) : null}
 // 					<WrappedComponent {...this.props} />
 // 				</div>
@@ -63,26 +74,4 @@ export default WithErrorHandler
 // 		}
 // 	}
 // }
-// export default withErrorHandler
-
-// import React, { Fragment, useEffect, useState } from 'react'
-// import Modal from '../../UI/Modal/Modal'
-// const withErrorHandler = (WrappedComponent, axios) => {
-// 	useEffect(() => {
-// 		axios.interceptors.response.use(null, error => console.log('Intercepted'))
-// 	})
-// 	return props => {
-// 		// const [error, setError] = useState(null)
-// 		// axios.interceptors.request.use(null, error =>
-// 		// 	console.log('WTF this aint working')
-// 		// )
-// 		// axios.interceptors.response.use(null, error => console.log('interceoted'))
-// 		return (
-// 			<Fragment>
-// 				{/* <Modal>Somethings wrong</Modal> */}
-// 				<WrappedComponent />
-// 			</Fragment>
-// 		)
-// 	}
-// }
-// export default withErrorHandler
+// export default WithErrorHandler
