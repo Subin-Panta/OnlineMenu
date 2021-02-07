@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+//import PropTypes from 'prop-types'
 import classes from './ReceiptButton.module.css'
 import { connect } from 'react-redux'
 import { clearAll } from '../../../store/actions/index'
@@ -16,6 +16,6 @@ const ReceiptButton = ({ clearAll, clickHandler }) => {
 	)
 }
 
-ReceiptButton.propTypes = {}
+//ReceiptButton.propTypes = {}
 const mapDispatchToProps = { clearAll }
 export default connect(null, mapDispatchToProps)(ReceiptButton)

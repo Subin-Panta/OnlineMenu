@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 const SingleItem = props => {
 	const [item, setItem] = useState([])
+	const a = props.match.params.name
 	useEffect(() => {
 		const data = async () => {
 			const response = await axios.get(`/menu/item/${a}`)
@@ -11,8 +12,7 @@ const SingleItem = props => {
 		}
 		data()
 		console.log(item)
-	}, [])
-	const a = props.match.params.name
+	}, [a, item])
 
 	return (
 		<div className={classes.container}>

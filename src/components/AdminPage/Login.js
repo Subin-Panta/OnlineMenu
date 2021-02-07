@@ -1,12 +1,23 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import classes from './Login.module.css'
+import WithErrorHandler from '../hoc/withErrorHandler/WithErrorHandler'
 const Login = () => {
 	const [formData, setFormData] = useState({
 		email: '',
 		password: ''
 	})
-	const submitHandler = e => {
+	const submitHandler = async e => {
 		e.preventDefault()
+		const lowercased = formData.email.toLowerCase()
+		const formD = {
+			email: lowercased,
+			password: formData.password
+		}
+		try {
+			const res = await axios.post('/auth/postLogin', formD)
+		} catch (error) {}
+
 		//send it to back end to verify
 	}
 	const changeHandler = e => {
@@ -43,4 +54,4 @@ const Login = () => {
 	)
 }
 
-export default Login
+export default WithErrorHandler(Login, axios)
