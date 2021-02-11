@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import classes from './DashBoard.module.css'
 // import PropTypes from 'prop-types'
 
-const DashBoard = props => {
+const DashBoard = ({ auth }) => {
+	useEffect(() => {
+		//Better yet just get name id and store it in redux since the login phase
+	}, [])
 	return (
 		<div>
-			<h1>DashBoard KTA ho</h1>
+			<div className={classes.header}>
+				<h1>Welcome {auth.name}</h1>
+			</div>
 		</div>
 	)
 }
 
 // DashBoard.propTypes = {}
-
-export default DashBoard
+const mapStateToProps = state => ({
+	auth: state.auth
+})
+export default connect(mapStateToProps)(DashBoard)

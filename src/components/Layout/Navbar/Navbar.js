@@ -1,7 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
+import { logout } from '../../../store/actions/auth'
 import classes from './Navbar.module.css'
-const Navbar = () => {
+const Navbar = ({ auth, logout }) => {
 	const logo = (
 		<svg
 			width='68'
@@ -18,6 +20,23 @@ const Navbar = () => {
 			/>
 		</svg>
 	)
+	const logoutHandler = () => {
+		console.log('AYY CLI*CKED MOFO')
+		const CSRFtoken = localStorage.getItem('CSRF token')
+		console.log(CSRFtoken)
+		logout(CSRFtoken)
+	}
+	const conditionalRendering = () => {
+		if (auth.verified) {
+			return <div onClick={logoutHandler}>Log out</div>
+		} else {
+			return (
+				<Link className={classes.link} to='/adminLogin'>
+					Admin
+				</Link>
+			)
+		}
+	}
 	return (
 		<nav className={classes.navbar}>
 			<div className={classes.logo}>{logo}</div>
@@ -56,13 +75,9 @@ const Navbar = () => {
 					</NavLink>
 				</li>
 			</ul>
-			<div className={classes.login}>
-				<Link className={classes.link} to='/adminLogin'>
-					Admin
-				</Link>
-			</div>
+			<div className={classes.login}>{conditionalRendering()}</div>
 		</nav>
 	)
 }
-
-export default Navbar
+const mapStateToProps = state => ({ auth: state.auth })
+export default connect(mapStateToProps, { logout })(Navbar)
