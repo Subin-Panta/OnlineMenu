@@ -8,7 +8,6 @@ import axios from 'axios'
 import withErrorHandler from '../../hoc/withErrorHandler/WithErrorHandler'
 const Menu = ({ menu, initMenu, order, addItem, removeItem }) => {
 	useEffect(() => {
-		console.log('axios request sending and reciening')
 		initMenu()
 	}, [initMenu])
 

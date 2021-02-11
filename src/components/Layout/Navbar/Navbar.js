@@ -50,6 +50,11 @@ const Navbar = () => {
 						Customer Support
 					</NavLink>
 				</li>
+				<li>
+					<NavLink exact to='/dashboard'>
+						Dummy
+					</NavLink>
+				</li>
 			</ul>
 			<div className={classes.login}>
 				<Link className={classes.link} to='/adminLogin'>

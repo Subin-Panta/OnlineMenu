@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import Modal from '../../UI/Modal/Modal'
 const WithErrorHandler = (WrappedComponent, axios) => {
 	const NewComponent = props => {
-		console.log('UseState')
+		// console.log('UseState')
 		const [ready, setReady] = useState(false)
 		const [error, setError] = useState(null)
-		console.log('runs')
+		// console.log('runs')
 		useEffect(() => {
 			const req = axios.interceptors.request.use(config => {
-				console.log('request intercepted')
+				// console.log('request intercepted')
+				setError(null)
 				return config
 			})
 			const res = axios.interceptors.response.use(null, error => {
@@ -24,7 +25,7 @@ const WithErrorHandler = (WrappedComponent, axios) => {
 		if (!ready) return null
 		return (
 			<div>
-				{console.log('render')}
+				{/* {console.log('render')} */}
 				{error ? (
 					<Modal clickHandler={() => setError(null)}> {error.message}</Modal>
 				) : null}
@@ -45,9 +46,9 @@ export default WithErrorHandler
 // 		}
 
 // 		componentDidMount() {
-// 			console.log('component did Moint')
+//console.log('component did Moint')
 // 			this.reqinter = axios.interceptors.request.use(req => {
-// 				console.log('clearing error', this.state.error)
+//console.log('clearing error', this.state.error)
 // 				this.setState({ error: null })
 // 			})
 // 			this.resinter = axios.interceptors.response.use(null, error => {

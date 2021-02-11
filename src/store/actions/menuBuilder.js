@@ -13,7 +13,7 @@ export const initMenu = () => {
 	return async dispatch => {
 		try {
 			//forced error
-			const data = await axios.get('/menu/')
+			const data = await axios.get('/menu/', { withCredentials: true })
 			dispatch(setMenu(data.data.items))
 		} catch (error) {
 			dispatch(fetchFail())
