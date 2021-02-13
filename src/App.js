@@ -11,10 +11,10 @@ import PrivateRoute from './components/hoc/PrivateRouting/PrivateRoute'
 import DashBoard from './components/AdminPage/DashBoard/DashBoard'
 import { connect } from 'react-redux'
 import { checkToken } from './store/actions/auth'
+import EditMenu from './components/AdminPage/EditMenu/EditMenu'
 const App = ({ checkToken }) => {
 	const token = localStorage.getItem('CSRF token')
 	if (token) {
-
 		checkToken(token)
 		//Fire an action that sends a post request to verifyToken
 	}
@@ -28,6 +28,7 @@ const App = ({ checkToken }) => {
 				<Route exact path='/adminLogin' component={Login} />
 				<Route exact path='/menuItems/:name' component={SingleItem} />
 				<PrivateRoute exact path='/dashboard' component={DashBoard} />
+				<PrivateRoute exact path='/modify' component={EditMenu} />
 				<Route component={PageNotFound} />
 			</Switch>
 		</div>

@@ -1,0 +1,32 @@
+.first {
+	height: 5rem;
+	width: 20rem;
+	padding: 0 rem;
+	background-color: aqua;
+	padding: 1rem;
+	transition: all 200ms;
+}
+.second {
+	height: 5rem;
+	width: 20rem;
+	padding: 0 rem;
+	background-color: aqua;
+	padding: 1rem;
+	transition: all 200ms;
+	align-self: flex-end;
+}
+.third {
+	height: 5rem;
+	width: 20rem;
+	padding: 0 rem;
+	background-color: aqua;
+	padding: 1rem;
+	transition: all 200ms;
+}
+.first:hover,
+.second:hover,
+.third:hover {
+	cursor: pointer;
+	padding: 0.5rem;
+	background-color: brown;
+}

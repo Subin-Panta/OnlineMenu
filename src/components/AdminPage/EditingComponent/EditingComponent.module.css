@@ -1,0 +1,80 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	background-color: burlywood;
+	padding: 2rem;
+	width: 50vw;
+
+	margin-left: 20px;
+	border-radius: 30px;
+	flex-grow: 1;
+}
+.subContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+.name {
+	margin: 10px 0 20px 0;
+}
+.price {
+	margin: 10px 0 20px 0;
+}
+.buttons {
+	margin: 10px 10vh 20px 0;
+	display: flex;
+	flex-direction: coloumn;
+}
+.delete {
+	margin: 0 10px 0 10px;
+	color: white;
+	padding: 0.3rem;
+	border-radius: 5px;
+	background-color: rgb(252, 0, 0);
+	transition: all 200ms;
+}
+
+.edit {
+	margin: 0 10px 0 10px;
+	color: rgb(0, 0, 0);
+	padding: 0.3rem;
+	border-radius: 5px;
+	background-color: rgb(95, 97, 240);
+	transition: background-color 5ms;
+}
+.header {
+	margin: 0 auto 20px auto;
+}
+.add {
+	width: 10vw;
+	height: 5vh;
+	background-color: rgb(83, 241, 83);
+	margin: 0 auto 0 auto;
+}
+.delete:hover,
+.edit:hover {
+	background-color: rgb(238, 189, 226);
+	cursor: pointer;
+	padding: 0.2rem;
+}
+.form {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-evenly;
+	min-height: 50vh;
+}
+.form input {
+	height: 20px;
+	width: 30vw;
+	border-radius: 2px;
+	border: 1px solid black;
+	margin: auto;
+}
+.form input[type='submit'] {
+	width: 5vw;
+}
+.form textarea {
+	width: 30vw;
+	margin: auto;
+}

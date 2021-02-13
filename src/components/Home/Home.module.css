@@ -16,7 +16,7 @@
 }
 .receipt {
 	width: 50%;
-	height: 500px;
+	min-height: 50vh;
 	margin: auto;
 	background: linear-gradient(
 		179.98deg,

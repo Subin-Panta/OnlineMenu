@@ -71,7 +71,12 @@ const Navbar = ({ auth, logout }) => {
 				</li>
 				<li>
 					<NavLink exact to='/dashboard'>
-						Dummy
+						Dashboard delete me
+					</NavLink>
+				</li>
+				<li>
+					<NavLink exact to='/modify'>
+						Modify Delete me
 					</NavLink>
 				</li>
 			</ul>

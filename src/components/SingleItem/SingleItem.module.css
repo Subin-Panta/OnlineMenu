@@ -31,3 +31,43 @@
 	border-radius: 6px;
 	background-color: rgb(243, 77, 77);
 }
+.imageContainer {
+	overflow: hidden;
+	border-radius: 20px;
+	height: 54vh;
+	width: 35vw;
+	margin: 20px auto 25px auto;
+
+	background-color: white;
+	box-shadow: 0 4px 8px 0 rgba(228, 22, 22, 0.2),
+		0 6px 20px 0 rgba(10, 32, 230, 0.19);
+}
+.imageContainer img {
+	height: auto;
+	width: 100%;
+	/* even more control with max-width */
+	max-width: 100%;
+	/* margin: auto auto 10% auto;
+	border-radius: 20px;
+	max-height: 100%;
+	max-width: 100%;
+	object-fit: cover; */
+	transition: opacity 400ms;
+}
+.imageContainer span {
+	justify-content: center;
+}
+.imageContainer:hover .overlay {
+	height: 100%;
+}
+.overlay {
+	overflow: hidden;
+	display: inline-block;
+	opacity: 1;
+	background-color: #008cba;
+	height: 0%;
+	width: 100%;
+	max-height: auto;
+	max-width: auto;
+	transition: 0.5s ease;
+}

@@ -6,7 +6,7 @@ import Spinner from '../../UI/spinner/Spinner'
 import classes from './Menu.module.css'
 import axios from 'axios'
 import withErrorHandler from '../../hoc/withErrorHandler/WithErrorHandler'
-const Menu = ({ menu, initMenu, order, addItem, removeItem }) => {
+const Menu = ({ menu, initMenu, order, addItem, removeItem, admin }) => {
 	useEffect(() => {
 		initMenu()
 	}, [initMenu])
@@ -45,6 +45,27 @@ const Menu = ({ menu, initMenu, order, addItem, removeItem }) => {
 		// return 0
 	}
 
+	const editing = () => {}
+	const conditionalRendering = item => (
+		<td>
+			<button
+				className={classes.btnDanger}
+				name={item.name}
+				onClick={e => removeItem(e, item.price)}
+				disabled={disableChecker(item.name)}
+			>
+				-
+			</button>
+			{conditionals(item.name)}
+			<button
+				className={classes.btnSuccess}
+				onClick={e => addItem(e, item.price)}
+				name={item.name}
+			>
+				+
+			</button>
+		</td>
+	)
 	return (
 		<div>
 			<table>
@@ -52,7 +73,7 @@ const Menu = ({ menu, initMenu, order, addItem, removeItem }) => {
 					<tr>
 						<th>Items</th>
 						<th>Price</th>
-						<th>Quantity</th>
+						{admin ? null : <th>Quantity</th>}
 					</tr>
 				</thead>
 				<tbody>
@@ -80,24 +101,7 @@ const Menu = ({ menu, initMenu, order, addItem, removeItem }) => {
 									</Link>
 								</td>
 								<td>Rs {item.price}</td>
-								<td>
-									<button
-										className={classes.btnDanger}
-										name={item.name}
-										onClick={e => removeItem(e, item.price)}
-										disabled={disableChecker(item.name)}
-									>
-										-
-									</button>
-									{conditionals(item.name)}
-									<button
-										className={classes.btnSuccess}
-										onClick={e => addItem(e, item.price)}
-										name={item.name}
-									>
-										+
-									</button>
-								</td>
+								{admin ? editing() : conditionalRendering(item)}
 							</tr>
 						))
 					)}

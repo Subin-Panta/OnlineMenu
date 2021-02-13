@@ -1,0 +1,12 @@
+.container {
+	display: flex;
+	flex-flow: row nowrap;
+}
+.menu {
+	margin-left: auto;
+	background-color: rgb(228, 119, 119);
+	border-radius: 6px;
+	padding: 2rem;
+	margin-right: 4rem;
+}
+

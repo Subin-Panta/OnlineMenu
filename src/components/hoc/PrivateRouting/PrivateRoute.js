@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 const PrivateRoute = ({ component: Component, auth, ...rest }) => {
 	// console.log(1, !auth.verified && !auth.loading)
 	// console.log(2, !auth.verified && auth.loading)
-	// console.log(3, auth.verified && !auth.loading)
+	console.log('Should be rendered', auth.verified && !auth.loading)
 	return (
 		<Route
 			{...rest}
