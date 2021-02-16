@@ -1,3 +1,4 @@
+import { localDel } from '../actions/adminActions'
 import * as actionTypes from '../actions/types'
 const initialState = {
 	error: false,
@@ -18,8 +19,22 @@ const fetchFail = state => {
 		error: true
 	}
 }
+const localAddition = (state, action) => {
+	console.log(action.item.data.result)
+	const newItems = [...state.items, action.item.data.result]
+	return { ...state, error: false, loading: false, items: newItems }
+}
+const localDeletion = (state, action) => {
+	console.log(action.id)
+	const newState = state.items.filter(item => item._id !== action.id)
+	return { ...state, items: newState, loading: false, error: false }
+}
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
+		case actionTypes.LOCAL_ADD:
+			return localAddition(state, action)
+		case actionTypes.LOCAL_DEL:
+			return localDeletion(state, action)
 		case actionTypes.SET_MENU:
 			return setMenu(state, action)
 		case actionTypes.FETCH_FAILED:

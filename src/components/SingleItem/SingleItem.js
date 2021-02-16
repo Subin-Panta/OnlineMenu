@@ -24,7 +24,16 @@ const SingleItem = ({ match, menu, initMenu }) => {
 	const comp = item => (
 		<Fragment>
 			<div className={classes.imageContainer}>
-				<div className={classes.overlay}>Hello world</div>
+				<div className={classes.overlay}>
+					<div className={classes.list}>
+						<h1>Ingredients</h1>
+						<ul>
+							{item.ingredients.map((item, index) => {
+								return <li key={index}>{item}</li>
+							})}
+						</ul>
+					</div>
+				</div>
 				<img src={'/' + item.imageUrl} alt='' />
 				<span>Rs {item.price}</span>
 			</div>

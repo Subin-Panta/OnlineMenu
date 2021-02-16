@@ -1,49 +1,174 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { addNew, deleteItem, editItem } from '../../../store/actions/index'
 import Modal from '../../UI/Modal/Modal'
 import Spinner from '../../UI/spinner/Spinner'
 //import PropTypes from 'prop-types'
 import classes from './EditingComponent.module.css'
 
-const EditingComponent = ({ menu }) => {
+const EditingComponent = ({ menu, addNew, deleteItem, editItem }) => {
 	const [openModal, setOpenModal] = useState(false)
 	const [formData, setFormData] = useState({
-		name: null,
-		price: null,
-		image: null,
-		details: null
+		name: '',
+		price: '',
+		image: '',
+		ingredients: '',
+		details: ''
 	})
+	const [editing, setEditing] = useState(false)
+	const [editingId, setEditingId] = useState(null)
+	const deleteHandler = e => {
+		console.log(e.target.attributes.getNamedItem('data-id').value)
+		const id = e.target.attributes.getNamedItem('data-id').value
+		const authHeader = localStorage.getItem('CSRF token')
+		deleteItem(id, authHeader)
+	}
+	useEffect(() => {
+		if (openModal === false) {
+			setEditing(false)
+			setFormData({
+				name: '',
+				price: '',
+				image: '',
+				ingredients: '',
+				details: ''
+			})
+		}
+		console.log(openModal)
+		console.log(editing)
+	}, [openModal])
 	const itemRenderer = () => {
-		console.log(menu)
 		return menu.items.map((item, index) => {
 			return (
 				<div className={classes.subContainer} key={index}>
 					<div className={classes.name}>{item.name}</div>
 					{/* <div className={classes.price}>{item.price}</div> */}
 					<div className={classes.buttons}>
-						<div className={classes.delete}>Delete</div>{' '}
-						{/*Fire redux action that sends request to backend to delete a item based on its name  and update State in redux of menu.items*/}
-						<div className={classes.edit}>Edit</div>
+						<div
+							className={classes.delete}
+							data-id={item._id}
+							onClick={deleteHandler}
+						>
+							Delete
+						</div>{' '}
+						<div
+							className={classes.edit}
+							data-id={item._id}
+							onClick={editHandler}
+						>
+							Edit
+						</div>
 						{/*OPen Modal where you would have a form that is filled with well details of the item and submit would update it in the backend   and update State in redux of menu.items */}
 					</div>
 				</div>
 			)
 		})
 	}
+
 	const trigger = () => {
 		setOpenModal(!openModal)
 	}
 	const submitHandler = e => {
 		e.preventDefault()
+		const authHeader = localStorage.getItem('CSRF token')
+		const fdata = new FormData()
+		fdata.append('name', formData.name)
+		fdata.append('price', formData.price)
+		fdata.append('image', formData.image)
+		fdata.append('ingredients', formData.ingredients)
+		fdata.append('details', formData.details)
+		if (editing && editingId) {
+			console.log('Should Reach here')
+			editItem(editingId, authHeader, fdata)
+		} else {
+			addNew(fdata, authHeader)
+		}
+		trigger()
+
+		//check whether editing if false or true if true call editing() in redux action
 	}
+	const changeHandler = e => {
+		console.log(e.target.name)
+		if (e.target.name === 'image') {
+			setFormData({ ...formData, [e.target.name]: e.target.files[0] })
+		} else {
+			setFormData({ ...formData, [e.target.name]: e.target.value })
+		}
+	}
+
+	const editHandler = e => {
+		//setEditing to true
+		setEditing(true)
+		const id = e.target.attributes.getNamedItem('data-id').value
+		//first get item info from redux using the above Id
+		const oldData = menu.items.filter(item => item._id === id)
+		//setFormData() and set the old value
+		setFormData({
+			...formData,
+			name: oldData[0].name,
+			price: oldData[0].price,
+			image: oldData[0].image,
+			ingredients: oldData[0].ingredients,
+			details: oldData[0].details
+		})
+		setEditingId(id)
+		//openModal
+		trigger()
+	}
+
 	const modalContents = () => (
 		<div>
-			<form className={classes.form} enctype='multipart/form-data'>
-				<input type='text' name='Name' placeholder='Name' />
-				<input type='text' name='Price' placeholder='Price' />
-				<textarea rows='10' name='Details' placeholder='details' />
-				<input type='file' name='image' />
-				<input type='submit' onSubmit={submitHandler} />
+			<form
+				className={classes.form}
+				onSubmit={submitHandler}
+				encType='multipart/form-data'
+			>
+				<input
+					required={!editing}
+					type='text'
+					name='name'
+					placeholder='Name'
+					onChange={changeHandler}
+					value={formData.name}
+				/>
+				<input
+					required={!editing}
+					type='text'
+					name='price'
+					placeholder='Price'
+					onChange={changeHandler}
+					value={formData.price}
+				/>
+				<textarea
+					required={!editing}
+					rows='10'
+					name='details'
+					placeholder='Details'
+					onChange={changeHandler}
+					value={formData.details}
+				/>
+				<input
+					required={!editing}
+					type='text'
+					name='ingredients'
+					placeholder='Ingredients (enter ingredients seperated by comma)'
+					onChange={changeHandler}
+					value={formData.ingredients}
+				/>
+				<label htmlFor='file-upload' className={classes.customFileUpload}>
+					Add Image
+				</label>
+				<input
+					id='file-upload'
+					required={!editing}
+					type='file'
+					name='image'
+					placeholder='Add Image'
+					onChange={changeHandler}
+					// value={formData.image}
+				/>
+
+				<input type='submit' />
 			</form>
 		</div>
 	)
@@ -68,4 +193,6 @@ const EditingComponent = ({ menu }) => {
 const mapStateToProps = state => ({
 	menu: state.menuBuilder
 })
-export default connect(mapStateToProps)(EditingComponent)
+export default connect(mapStateToProps, { addNew, deleteItem, editItem })(
+	EditingComponent
+)

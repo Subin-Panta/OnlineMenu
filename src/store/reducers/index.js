@@ -3,6 +3,7 @@ import menuBuilderReducer from './menuBuilder'
 import orderBuilderReducer from './orderBuilder'
 import errorReducer from './error'
 import authReducer from './auth'
+
 const rootReducer = combineReducers({
 	menuBuilder: menuBuilderReducer,
 	orderBuilder: orderBuilderReducer,

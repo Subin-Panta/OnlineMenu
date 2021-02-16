@@ -72,9 +72,44 @@
 	margin: auto;
 }
 .form input[type='submit'] {
-	width: 5vw;
+	background-color: rgb(57, 255, 17);
+	color: rgb(75, 67, 67);
+	width: 7vw;
+	padding: 1px;
+	height: 3vh;
+	transition: all 300ms;
+}
+.form input[type='submit']:hover {
+	width: 6vw;
+	height: 4vh;
+	padding: 2px;
+	cursor: pointer;
+	color: rgb(70, 177, 248);
+	background-color: rgb(110, 255, 146);
 }
 .form textarea {
 	width: 30vw;
 	margin: auto;
+}
+.form input[type='file'] {
+	display: none;
+	width: 10vw;
+	background-color: rgb(255, 255, 255);
+	color: black;
+}
+.customFileUpload {
+	background-color: cornflowerblue;
+	width: 5vw;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 6px;
+	padding: 2px;
+	transition: all 300ms;
+}
+.customFileUpload:hover {
+	cursor: pointer;
+	/* width: 5.2vw;
+	height: 6vh; */
+	padding: 1px;
+	background-color: rgba(245, 34, 19, 0.651);
 }

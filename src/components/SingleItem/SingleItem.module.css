@@ -71,3 +71,19 @@
 	max-width: auto;
 	transition: 0.5s ease;
 }
+.list {
+	display: table;
+	margin: auto;
+}
+.list ul {
+	margin: auto;
+	color: white;
+	margin-top: auto;
+	justify-content: center;
+}
+.list ul li {
+	background-color: rgba(238, 12, 12, 0.308);
+	border-radius: 3px;
+	margin: 10px;
+	text-transform: capitalize;
+}
