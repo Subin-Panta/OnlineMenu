@@ -1,6 +1,8 @@
+import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { addNew, deleteItem, editItem } from '../../../store/actions/index'
+import WithErrorHandler from '../../hoc/withErrorHandler/WithErrorHandler'
 import Modal from '../../UI/Modal/Modal'
 import Spinner from '../../UI/spinner/Spinner'
 //import PropTypes from 'prop-types'
@@ -34,8 +36,6 @@ const EditingComponent = ({ menu, addNew, deleteItem, editItem }) => {
 				details: ''
 			})
 		}
-		console.log(openModal)
-		console.log(editing)
 	}, [openModal])
 	const itemRenderer = () => {
 		return menu.items.map((item, index) => {
@@ -193,6 +193,8 @@ const EditingComponent = ({ menu, addNew, deleteItem, editItem }) => {
 const mapStateToProps = state => ({
 	menu: state.menuBuilder
 })
-export default connect(mapStateToProps, { addNew, deleteItem, editItem })(
-	EditingComponent
+export default WithErrorHandler(
+	connect(mapStateToProps, { addNew, deleteItem, editItem })(EditingComponent),
+	axios
 )
+//neer error Handling HOC

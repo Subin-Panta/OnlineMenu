@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Redirect, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 // import PropTypes from 'prop-types'
 import classes from './Contents.module.css'
 const Contents = props => {
@@ -7,7 +7,10 @@ const Contents = props => {
 	return (
 		<Fragment>
 			{/* on click send request to backend to see orders and its invoices */}
-			<div className={classes.first}>Orders </div>
+			<Link to='/orders' style={{ textDecoration: 'none', color: 'black' }}>
+				<div className={classes.first}>Orders</div>
+			</Link>
+			{/* new component in react where admin can see all the orders */}
 			{/* on click redirect to private route adding, deleting and editing menu items */}
 			<div
 				className={classes.second}

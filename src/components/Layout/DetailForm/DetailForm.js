@@ -1,21 +1,47 @@
 import React, { useState } from 'react'
 import classes from './Detail.module.css'
-const DetailForm = () => {
+import axios from 'axios'
+import WithErrorHandler from '../../hoc/withErrorHandler/WithErrorHandler'
+import { connect } from 'react-redux'
+import { useHistory } from 'react-router'
+const DetailForm = ({ order }) => {
+	const history = useHistory()
 	const [formData, setFormData] = useState({
 		name: '',
 		address: '',
 		phoneNo: '',
-		additionalDetails: '',
-		gpsValue: {
-			longitude: '',
-			latitude: ''
-		}
+		additionalDetails: ''
 	})
 
-	const submitHandler = e => {
+	const submitHandler = async e => {
 		e.preventDefault()
-		console.log('here MF')
-		//submit to backend and generate a invoice and pass invoice back to client
+		//Better to use this in Redux
+		try {
+			const formDataOrder = {
+				...formData,
+				order: {
+					...order.itemCount
+				}
+			}
+			console.log(formDataOrder)
+			//forcing response to be recieved in a blob format
+			const response = await axios.post('order/generateOrder', formDataOrder, {
+				responseType: 'blob'
+			})
+
+			history.push('/')
+			//opening new tab in window
+			//Create a Blob from the PDF Stream
+			const file = new Blob([response.data], { type: 'application/pdf' })
+			//Build a URL from the file
+			const fileURL = URL.createObjectURL(file)
+			//Open the URL on new Window
+			const pdfWindow = window.open()
+			pdfWindow.location.href = fileURL
+		} catch (error) {
+			console.log(error)
+			//dont really need this though hamro Hoc Error Handler le kaam garcha
+		}
 	}
 	const changeHandler = e => {
 		setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -62,5 +88,7 @@ const DetailForm = () => {
 		</div>
 	)
 }
-
-export default DetailForm
+const mapStateToProps = state => ({
+	order: state.orderBuilder
+})
+export default WithErrorHandler(connect(mapStateToProps)(DetailForm), axios)

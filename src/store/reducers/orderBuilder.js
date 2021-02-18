@@ -1,3 +1,4 @@
+import { orderpost } from '../actions/orderBuilder'
 import * as actionTypes from '../actions/types'
 const initalState = {
 	error: false,
@@ -79,7 +80,7 @@ const removeItem = (state, e, price) => {
 		}
 	}
 }
-export const clearAll = state => {
+ const clearAll = state => {
 	return {
 		error: false,
 		loading: false,
@@ -87,6 +88,7 @@ export const clearAll = state => {
 		itemPrice: {}
 	}
 }
+
 const reducer = (state = initalState, action) => {
 	switch (action.type) {
 		case actionTypes.ADD_ITEM:
@@ -96,6 +98,7 @@ const reducer = (state = initalState, action) => {
 		case actionTypes.CLEAR_ALL: {
 			return clearAll()
 		}
+	
 		default:
 			return state
 	}

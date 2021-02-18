@@ -21,3 +21,4 @@ export const LOCAL_DEL_FAIL = 'LOCAL_DEL_FAIL'
 export const DELETE = 'DELETE'
 export const DELETE_FAIL = 'DELETE_FAIL'
 export const LOCAL_EDIT = 'LOCAL_EDIT'
+

@@ -1,9 +1,10 @@
 .bill {
 	color: white;
-	width: 469px;
-	height: 700px;
+	width: 40vw;
+	height: 80vh;
 	background-color: #811203;
 	border-radius: 19px;
 	text-align: center;
 	margin: 0 100px 0 0;
+	overflow: auto;
 }

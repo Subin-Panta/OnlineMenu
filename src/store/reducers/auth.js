@@ -17,21 +17,7 @@ const verifyUser = (state, action) => {
 		loading: false
 	}
 }
-const logout = (state, action) => {
-	return {
-		...state,
-		name: null,
-		verified: false,
-		userId: null,
-		error: false,
-		loading: false
-	}
-}
-const logoutFail = (state, action) => {
-	return {
-		...state
-	}
-}
+
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.VERIFY_USER:
@@ -48,8 +34,6 @@ const reducer = (state = initialState, action) => {
 				userId: null
 			}
 
-		case actionTypes.LOGIN_FAIL:
-			return logoutFail(state, action)
 		default:
 			return state
 	}
