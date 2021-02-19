@@ -13,21 +13,30 @@
 	display: flex;
 	flex-direction: row;
 	margin: 0 auto 0 auto;
+	width: 100%;
+	justify-content: space-evenly;
 }
 .heading {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
 }
+.heading:hover {
+	color: rgb(136, 128, 128);
+	cursor: pointer;
+}
 
 .subContainer1 {
 	display: flex;
+	padding: 20px;
 	flex-direction: column;
-	color: white;
-	background-color: brown;
+	color: rgb(0, 0, 0);
 }
 .subContainer2 {
 	display: flex;
+	padding: 20px;
 	flex-direction: column;
-	background-color: rgb(42, 106, 165);
+}
+.total {
+	text-align: center;
 }

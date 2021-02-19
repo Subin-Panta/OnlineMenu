@@ -27,7 +27,6 @@ const Orders = props => {
 				console.log(response)
 				if (response.status === 200) {
 					setOrders({
-						...localOrders,
 						orders: { ...response.data },
 						loading: false
 					})
@@ -38,7 +37,27 @@ const Orders = props => {
 		}
 		callingFunction()
 	}, [])
-
+	const getInvoice = async id => {
+		//dont wanna call a redux action since i won't store it in a global State
+		//need localStorage csrf token
+		const authHeader = localStorage.getItem('CSRF token')
+		try {
+			const response = await axios.get(`/order/invoice/${id}`, {
+				headers: {
+					Authorization: authHeader
+				},
+				responseType: 'blob'
+			})
+			const file = new Blob([response.data], { type: 'application/pdf' })
+			//Build a URL from the file
+			const fileURL = URL.createObjectURL(file)
+			//Open the URL on new Window
+			const pdfWindow = window.open()
+			pdfWindow.location.href = fileURL
+		} catch (error) {
+			console.log(error)
+		}
+	}
 	const content = () => {
 		if (localOrders.orders.result.length === 0) {
 			return <h3>no Order</h3>
@@ -47,7 +66,9 @@ const Orders = props => {
 			const arrConverted = Object.keys(item.order)
 			return (
 				<div key={index} className={classes.container}>
-					<h3 className={classes.heading}>Order #{item._id}</h3>
+					<h3 className={classes.heading} onClick={() => getInvoice(item._id)}>
+						Order #{item._id}
+					</h3>
 					<div className={classes.mainContainer}>
 						<div className={classes.subContainer1}>
 							<ul>
@@ -57,17 +78,18 @@ const Orders = props => {
 									</li>
 								))}
 							</ul>
-
-							<span>Total : {item.total}</span>
 						</div>
 						<div className={classes.subContainer2}>
 							{/* make user info appear on right */}
 							<span>Name: {item.name}</span>
 							<span>Phone Number: {item.phoneNo}</span>
-							<span>Adress: {item.address}</span>
-							<span>Additional Details: {item.additionalDetails}</span>
+							<span>Address: {item.address}</span>
+							<span>
+								Additional Details: {item.additionalDetails || 'none'}
+							</span>
 						</div>
 					</div>
+					<div className={classes.total}>Total :Rs {item.total}</div>
 				</div>
 			)
 		})

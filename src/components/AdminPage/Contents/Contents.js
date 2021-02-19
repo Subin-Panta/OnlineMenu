@@ -21,7 +21,9 @@ const Contents = props => {
 				Edit Menu
 			</div>
 			{/*ability to add or remove contact information */}
-			<div className={classes.third}>Edit Customer Support</div>
+			<Link to='/signUp' style={{ textDecoration: 'none', color: 'black' }}>
+				<div className={classes.third}>Add new Admin</div>
+			</Link>
 		</Fragment>
 	)
 }

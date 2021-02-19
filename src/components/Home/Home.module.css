@@ -1,29 +1,23 @@
 .menu {
 	padding: 10px;
-	background: linear-gradient(
-		178.24deg,
-		#fac3c3 1.49%,
-		rgba(204, 36, 36, 0) 98.62%
-	);
+	background: rgb(245, 245, 245);
 
-	border: 0.5px solid #2300f8;
+	border: none;
 	box-sizing: border-box;
-	box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+	box-shadow: 10px 8px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 12px;
 	width: 40%;
 	justify-content: center;
 	text-align: center;
 }
 .receipt {
+	color: white;	
 	width: 50%;
 	min-height: 50vh;
 	margin: auto;
-	background: linear-gradient(
-		179.98deg,
-		#888cec 0.02%,
-		rgba(196, 196, 196, 0) 104.6%
-	);
-	border: 1px solid #fb0000;
+	background: rgb(59, 61, 61);
+	border: none;
+	box-shadow: 10px 8px 4px rgb(116, 114, 114);
 	box-sizing: border-box;
 	border-radius: 12px;
 }

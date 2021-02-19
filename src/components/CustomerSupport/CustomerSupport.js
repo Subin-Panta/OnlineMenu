@@ -3,7 +3,7 @@ import React from 'react'
 const CustomerSupport = () => {
 	return (
 		<div>
-			<h1>Customer Support MOTHAFUCKAS</h1>
+			<h1>9841BakiSabaiAfaiHan </h1>
 		</div>
 	)
 }

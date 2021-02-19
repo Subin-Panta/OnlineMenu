@@ -13,6 +13,7 @@ import { connect } from 'react-redux'
 import { checkToken } from './store/actions/auth'
 import EditMenu from './components/AdminPage/EditMenu/EditMenu'
 import Orders from './components/AdminPage/Orders/Orders'
+import SignUp from './components/SignUp/SignUp'
 const App = ({ checkToken }) => {
 	const token = localStorage.getItem('CSRF token')
 	if (token) {
@@ -31,6 +32,7 @@ const App = ({ checkToken }) => {
 				<PrivateRoute exact path='/dashboard' component={DashBoard} />
 				<PrivateRoute exact path='/modify' component={EditMenu} />
 				<PrivateRoute exact path='/orders' component={Orders} />
+				<PrivateRoute exact path='/signUp' component={SignUp} />
 				<Route component={PageNotFound} />
 			</Switch>
 		</div>
