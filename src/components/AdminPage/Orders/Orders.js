@@ -16,14 +16,10 @@ const Orders = props => {
 
 	useEffect(() => {
 		console.log('called')
-		const authHeader = localStorage.getItem('CSRF token')
+
 		const callingFunction = async () => {
 			try {
-				const response = await axios.get('/order/getOrders', {
-					headers: {
-						Authorization: authHeader
-					}
-				})
+				const response = await axios.get('/order/getOrders')
 				console.log(response)
 				if (response.status === 200) {
 					setOrders({
@@ -40,12 +36,9 @@ const Orders = props => {
 	const getInvoice = async id => {
 		//dont wanna call a redux action since i won't store it in a global State
 		//need localStorage csrf token
-		const authHeader = localStorage.getItem('CSRF token')
+
 		try {
 			const response = await axios.get(`/order/invoice/${id}`, {
-				headers: {
-					Authorization: authHeader
-				},
 				responseType: 'blob'
 			})
 			const file = new Blob([response.data], { type: 'application/pdf' })

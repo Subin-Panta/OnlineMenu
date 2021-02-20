@@ -15,14 +15,10 @@ export const localDel = id => {
 	}
 }
 
-export const addNew = (data, authHeader) => {
+export const addNew = (data) => {
 	return async dispatch => {
 		try {
-			const response = await axios.post('/menu', data, {
-				headers: {
-					Authorization: authHeader
-				}
-			})
+			const response = await axios.post('/menu', data)
 			if (response.status === 201) {
 				dispatch(localAdd(response))
 			}
@@ -32,14 +28,10 @@ export const addNew = (data, authHeader) => {
 		}
 	}
 }
-export const deleteItem = (id, authHeader) => {
+export const deleteItem = (id) => {
 	return async dispatch => {
 		try {
-			const response = await axios.post(`auth/deleteItem/${id}`, null, {
-				headers: {
-					Authorization: authHeader
-				}
-			})
+			const response = await axios.post(`auth/deleteItem/${id}`)
 			if (response.status !== 200) {
 				throw new Error('Please try again Later')
 			}
@@ -50,16 +42,12 @@ export const deleteItem = (id, authHeader) => {
 		}
 	}
 }
-export const editItem = (id, token, fdata) => {
+export const editItem = (id, fdata) => {
 	//pass id as params
 	//pass csrf header
 	return async dispatch => {
 		try {
-			const response = await axios.post(`auth/editItem/${id}`, fdata, {
-				headers: {
-					Authorization: token
-				}
-			})
+			const response = await axios.post(`auth/editItem/${id}`, fdata)
 			if (response.status !== 200) {
 				throw new Error('Please try again later')
 			}

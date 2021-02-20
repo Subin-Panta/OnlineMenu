@@ -22,8 +22,8 @@ const EditingComponent = ({ menu, addNew, deleteItem, editItem }) => {
 	const deleteHandler = e => {
 		console.log(e.target.attributes.getNamedItem('data-id').value)
 		const id = e.target.attributes.getNamedItem('data-id').value
-		const authHeader = localStorage.getItem('CSRF token')
-		deleteItem(id, authHeader)
+
+		deleteItem(id)
 	}
 	useEffect(() => {
 		if (openModal === false) {
@@ -70,7 +70,7 @@ const EditingComponent = ({ menu, addNew, deleteItem, editItem }) => {
 	}
 	const submitHandler = e => {
 		e.preventDefault()
-		const authHeader = localStorage.getItem('CSRF token')
+
 		const fdata = new FormData()
 		fdata.append('name', formData.name)
 		fdata.append('price', formData.price)
@@ -79,9 +79,9 @@ const EditingComponent = ({ menu, addNew, deleteItem, editItem }) => {
 		fdata.append('details', formData.details)
 		if (editing && editingId) {
 			console.log('Should Reach here')
-			editItem(editingId, authHeader, fdata)
+			editItem(editingId, fdata)
 		} else {
-			addNew(fdata, authHeader)
+			addNew(fdata)
 		}
 		trigger()
 
