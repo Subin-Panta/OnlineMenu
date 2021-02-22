@@ -12,12 +12,7 @@ export const checkToken = authHeader => {
 	//add global axios headers where user Id is stored
 	return async dispatch => {
 		try {
-			const response = await axios.get('auth/verifyToken', {
-				headers: {
-					Authorization: authHeader
-				}
-			})
-
+			const response = await axios.get('auth/verifyToken')
 			if (response.status === 200) {
 				axios.defaults.headers.common['Authorization'] = authHeader
 				axios.defaults.headers.common['userId'] = response.data.Id
