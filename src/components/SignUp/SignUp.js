@@ -3,10 +3,12 @@ import classes from './SignUp.module.css'
 import Spinner from '../UI/spinner/Spinner'
 import axios from 'axios'
 import WithErrorHandler from '../hoc/withErrorHandler/WithErrorHandler'
+import SignUpForm from './SignUpForm/SignUpForm'
 const SignUp = () => {
 	const [data, setData] = useState({
 		loading: true,
-		users: []
+		users: [],
+		form: false
 	})
 	useEffect(() => {
 		console.log('infinite?')
@@ -16,6 +18,7 @@ const SignUp = () => {
 				if (fetchedData.status !== 200) {
 					throw new Error('Server Busy')
 				}
+
 				setData({ ...data, loading: false, users: [...fetchedData.data.users] })
 			} catch (error) {
 				console.log(error)
@@ -72,7 +75,15 @@ const SignUp = () => {
 					))
 				)}
 			</div>
-			<div className={classes.add}>Add New User</div>
+			<div
+				className={classes.add}
+				onClick={() => {
+					setData({ ...data, form: !data.form })
+				}}
+			>
+				Add New User
+			</div>
+			<div>{data.form ? <SignUpForm /> : null}</div>
 		</div>
 	)
 }

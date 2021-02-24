@@ -1,6 +1,7 @@
 .container {
 	display: flex;
 	flex-flow: row nowrap;
+	margin-top: 30px;
 }
 .menu {
 	margin-left: auto;
@@ -9,4 +10,3 @@
 	padding: 2rem;
 	margin-right: 4rem;
 }
-

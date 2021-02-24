@@ -7,7 +7,6 @@ import EditingComponent from '../EditingComponent/EditingComponent'
 const EditMenu = props => {
 	return (
 		<div>
-			<h1>Private Route that only admin can access</h1>
 			<div className={classes.container}>
 				<div>
 					<EditingComponent />

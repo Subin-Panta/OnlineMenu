@@ -34,7 +34,7 @@ const Login = ({ verifyUser, history, auth }) => {
 	return (
 		<div className={classes.box}>
 			<h3> Login as Admin</h3>
-			<hr />
+
 			<form onSubmit={submitHandler}>
 				<input
 					type='email'

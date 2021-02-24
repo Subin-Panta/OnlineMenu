@@ -32,10 +32,10 @@ const SingleItem = ({ match, menu, initMenu }) => {
 								return <li key={index}>{item}</li>
 							})}
 						</ul>
+						<span>Rs {item.price}</span>
 					</div>
 				</div>
 				<img src={'/' + item.imageUrl} alt='' />
-				<span>Rs {item.price}</span>
 			</div>
 			<span className={classes.details}>{item.details}</span>
 			<div className={classes.button}>
