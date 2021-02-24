@@ -127,6 +127,7 @@ const EditingComponent = ({ menu, addNew, deleteItem, editItem }) => {
 					required={!editing}
 					type='text'
 					name='name'
+					minLength='2'
 					placeholder='Name'
 					onChange={changeHandler}
 					value={formData.name}
@@ -143,6 +144,7 @@ const EditingComponent = ({ menu, addNew, deleteItem, editItem }) => {
 					required={!editing}
 					rows='10'
 					name='details'
+					minLength='10'
 					placeholder='Details'
 					onChange={changeHandler}
 					value={formData.details}

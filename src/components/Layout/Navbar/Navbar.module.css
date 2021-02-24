@@ -42,21 +42,22 @@
 .link {
 	text-decoration: none;
 	font-size: 20px;
-	opacity: 0;
+	opacity: 1;
 	/* test */
 	padding: 5px;
 	margin-top: auto;
 	margin-bottom: auto;
+	color: rgb(0, 0, 0);
 	margin-right: 1rem;
 }
 .login:hover,
 .link:hover {
 	font-size: 20px;
-	opacity: 1;
+	opacity: 0.7;
 	cursor: pointer;
 	display: block;
 	display: inline;
-	color: rgb(26, 16, 16);
+	color: rgb(0, 0, 0);
 }
 .dashboard {
 	margin: auto 0 auto 0;
