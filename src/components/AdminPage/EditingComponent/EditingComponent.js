@@ -20,7 +20,6 @@ const EditingComponent = ({ menu, addNew, deleteItem, editItem }) => {
 	const [editing, setEditing] = useState(false)
 	const [editingId, setEditingId] = useState(null)
 	const deleteHandler = e => {
-		console.log(e.target.attributes.getNamedItem('data-id').value)
 		const id = e.target.attributes.getNamedItem('data-id').value
 
 		deleteItem(id)
@@ -78,7 +77,6 @@ const EditingComponent = ({ menu, addNew, deleteItem, editItem }) => {
 		fdata.append('ingredients', formData.ingredients)
 		fdata.append('details', formData.details)
 		if (editing && editingId) {
-			console.log('Should Reach here')
 			editItem(editingId, fdata)
 		} else {
 			addNew(fdata)
@@ -88,7 +86,6 @@ const EditingComponent = ({ menu, addNew, deleteItem, editItem }) => {
 		//check whether editing if false or true if true call editing() in redux action
 	}
 	const changeHandler = e => {
-		console.log(e.target.name)
 		if (e.target.name === 'image') {
 			setFormData({ ...formData, [e.target.name]: e.target.files[0] })
 		} else {

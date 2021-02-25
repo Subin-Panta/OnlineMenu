@@ -11,7 +11,7 @@ const SignUp = () => {
 		form: false
 	})
 	useEffect(() => {
-		console.log('infinite?')
+		
 		const fetch = async () => {
 			try {
 				const fetchedData = await axios.get('/auth/allUsers')

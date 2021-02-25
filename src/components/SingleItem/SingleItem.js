@@ -17,7 +17,7 @@ const SingleItem = ({ match, menu, initMenu }) => {
 			const newData = menu.items.filter((object, index) => {
 				return object.name === a
 			})
-			console.log(newData)
+		
 			setItem(newData)
 		}
 	}, [menu.loading, menu.error, menu.items, a])

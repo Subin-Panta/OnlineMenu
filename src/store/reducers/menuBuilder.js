@@ -20,12 +20,10 @@ const fetchFail = state => {
 	}
 }
 const localAddition = (state, action) => {
-	console.log(action.item.data.result)
 	const newItems = [...state.items, action.item.data.result]
 	return { ...state, error: false, loading: false, items: newItems }
 }
 const localDeletion = (state, action) => {
-	console.log(action.id)
 	const newState = state.items.filter(item => item._id !== action.id)
 	return { ...state, items: newState, loading: false, error: false }
 }
