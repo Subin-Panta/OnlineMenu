@@ -14,7 +14,7 @@ const SignUp = () => {
 		console.log('infinite?')
 		const fetch = async () => {
 			try {
-				const fetchedData = await axios.get('api/auth/allUsers')
+				const fetchedData = await axios.get('/api/auth/allUsers')
 				if (fetchedData.status !== 200) {
 					throw new Error('Server Busy')
 				}
@@ -32,7 +32,7 @@ const SignUp = () => {
 
 		//send axios request to backend and remove the user from local State
 		try {
-			const response = await axios.post('api/auth/deleteUser', {
+			const response = await axios.post('/api/auth/deleteUser', {
 				id: e.target.name
 			})
 			if (response.status !== 200) {

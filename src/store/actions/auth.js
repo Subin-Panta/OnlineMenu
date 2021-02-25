@@ -12,7 +12,7 @@ export const checkToken = authHeader => {
 	//add global axios headers where user Id is stored
 	return async dispatch => {
 		try {
-			const response = await axios.get('api/auth/verifyToken')
+			const response = await axios.get('/api/auth/verifyToken')
 			if (response.status === 200) {
 				axios.defaults.headers.common['Authorization'] = authHeader
 				axios.defaults.headers.common['userId'] = response.data.Id
@@ -37,7 +37,7 @@ export const verifyUser = (email, password, history) => {
 	return async dispatch => {
 		try {
 			const data = { email, password }
-			const response = await axios.post('api/auth/postLogin', data)
+			const response = await axios.post('/api/auth/postLogin', data)
 			localStorage.setItem('CSRF token', response.data.HashedcsrfToken)
 			axios.defaults.headers.common['Authorization'] =
 				response.data.HashedcsrfToken
@@ -64,7 +64,7 @@ export const logout = authHeader => {
 	return async dispatch => {
 		//send logout request to backend as HttpOnly cookie can only be deleted by backend /auth/logout post
 		try {
-			const response = axios.post('api//auth/logout', null)
+			const response = axios.post('/api/auth/logout', null)
 			delete axios.defaults.headers.common['Authorization']
 			delete axios.defaults.headers.common['userId']
 			//update reducer where CSRF is removed

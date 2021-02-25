@@ -9,7 +9,7 @@ const Bill = order => {
 	useEffect(() => {
 		const verify = async () => {
 			if (order.order.itemCount !== 0) {
-				const res = await axios.post('api/menu/order', {
+				const res = await axios.post('/api/menu/order', {
 					bill: order.order.itemCount
 				})
 				if (res.status !== 200) {

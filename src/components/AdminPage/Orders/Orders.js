@@ -19,7 +19,7 @@ const Orders = props => {
 
 		const callingFunction = async () => {
 			try {
-				const response = await axios.get('api/order/getOrders')
+				const response = await axios.get('/api/order/getOrders')
 				console.log(response)
 				if (response.status === 200) {
 					setOrders({
@@ -38,7 +38,7 @@ const Orders = props => {
 		//need localStorage csrf token
 
 		try {
-			const response = await axios.get(`api/order/invoice/${id}`, {
+			const response = await axios.get(`/api/order/invoice/${id}`, {
 				responseType: 'blob'
 			})
 			const file = new Blob([response.data], { type: 'application/pdf' })
