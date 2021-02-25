@@ -17,7 +17,7 @@ const composeEnhancers =
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 ReactDOM.render(
 	<React.StrictMode>
-		<Router>
+		<Router basename='/server'>
 			<Provider store={store}>
 				<App />
 			</Provider>
