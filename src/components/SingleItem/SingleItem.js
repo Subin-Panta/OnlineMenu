@@ -35,7 +35,8 @@ const SingleItem = ({ match, menu, initMenu }) => {
 						<span>Rs {item.price}</span>
 					</div>
 				</div>
-				<img src={'/' + item.imageUrl} alt='' />
+				{console.log(item.imageUrl)}
+				<img src={'/api/' + item.imageUrl} alt='' />
 			</div>
 			<span className={classes.details}>{item.details}</span>
 			<div className={classes.button}>
