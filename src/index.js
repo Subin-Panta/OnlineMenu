@@ -10,7 +10,7 @@ import rootReducer from './store/reducers/index'
 import reportWebVitals from './reportWebVitals'
 
 const composeEnhancers =
-	(nodeEnv !== 'production' &&
+	(process.env.NODE_ENV !== 'production' &&
 		typeof window !== 'undefined' &&
 		window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
 	compose
