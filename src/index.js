@@ -9,7 +9,11 @@ import thunk from 'redux-thunk'
 import rootReducer from './store/reducers/index'
 import reportWebVitals from './reportWebVitals'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancers =
+	(nodeEnv !== 'production' &&
+		typeof window !== 'undefined' &&
+		window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+	compose
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 ReactDOM.render(
 	<React.StrictMode>
