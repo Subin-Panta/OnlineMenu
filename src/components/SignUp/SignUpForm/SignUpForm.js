@@ -25,7 +25,7 @@ const SignUpForm = () => {
 	const submitHandler = async e => {
 		e.preventDefault()
 		try {
-			const response = await axios.post('/auth/', formData)
+			const response = await axios.post('api/auth/', formData)
 			if (response.status !== 201) {
 				console.log(response.status)
 				throw new Error('Server Busy')
