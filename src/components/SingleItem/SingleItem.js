@@ -17,7 +17,7 @@ const SingleItem = ({ match, menu, initMenu }) => {
 			const newData = menu.items.filter((object, index) => {
 				return object.name === a
 			})
-			console.log(newData)
+			//console.log(newData)
 			setItem(newData)
 		}
 	}, [menu.loading, menu.error, menu.items, a])
@@ -35,7 +35,7 @@ const SingleItem = ({ match, menu, initMenu }) => {
 						<span>Rs {item.price}</span>
 					</div>
 				</div>
-				{console.log(item.imageUrl)}
+				
 				<img src={'/api/' + item.imageUrl} alt='' />
 			</div>
 			<span className={classes.details}>{item.details}</span>

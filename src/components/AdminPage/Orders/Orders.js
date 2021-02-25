@@ -15,12 +15,10 @@ const Orders = props => {
 	})
 
 	useEffect(() => {
-		console.log('called')
-
 		const callingFunction = async () => {
 			try {
 				const response = await axios.get('/api/order/getOrders')
-				console.log(response)
+
 				if (response.status === 200) {
 					setOrders({
 						orders: { ...response.data },

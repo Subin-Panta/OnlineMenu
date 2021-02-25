@@ -59,7 +59,7 @@ const removeItem = (state, e, price) => {
 	if (state.itemCount[e.target.name] === 1) {
 		const newitemCount = newFilter(state.itemCount, e.target.name)
 		const newitemPrice = newFilter(state.itemPrice, e.target.name)
-		console.log(newitemPrice)
+		//console.log(newitemPrice)
 		return {
 			...state,
 			loading: false,

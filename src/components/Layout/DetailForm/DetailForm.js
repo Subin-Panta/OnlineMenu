@@ -23,7 +23,7 @@ const DetailForm = ({ order }) => {
 					...order.itemCount
 				}
 			}
-			console.log(formDataOrder)
+	
 			//forcing response to be recieved in a blob format
 			const response = await axios.post('/api/order/generateOrder', formDataOrder, {
 				responseType: 'blob'

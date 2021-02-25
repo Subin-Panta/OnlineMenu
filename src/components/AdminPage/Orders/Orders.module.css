@@ -31,11 +31,13 @@
 	padding: 20px;
 	flex-direction: column;
 	color: rgb(0, 0, 0);
+	width: 60%;
 }
 .subContainer2 {
 	display: flex;
 	padding: 20px;
 	flex-direction: column;
+	width: 40%;
 }
 .total {
 	text-align: center;
